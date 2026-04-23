@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yahya Michbal | QA Automation Engineer</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Yahya Michbal — QA Automation Engineer & AI-Augmented Testing Specialist with 3 years of experience in Playwright, Robot Framework, CI/CD pipelines, and AI-powered testing." />
+  <meta name="keywords" content="QA Automation, Playwright, Robot Framework, AI Testing, CI/CD, TypeScript, Python, GitHub Actions" />
+  <meta name="author" content="Yahya Michbal" />
+
+  <!-- Open Graph EN -->
+  <meta property="og:title" content="Yahya Michbal | QA Automation Engineer" />
+  <meta property="og:description" content="QA Automation Engineer & AI-Augmented Testing Specialist — Playwright, Robot Framework, CI/CD, AI Testing." />
+  <meta property="og:url" content="https://OssOIB.github.io" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://OssOIB.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Yahya Michbal | QA Automation Engineer" />
+  <meta name="twitter:description" content="QA Automation Engineer & AI Testing Specialist — Playwright, CI/CD, TypeScript." />
+
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════ ROOT & RESET ═══════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0a0a0f;
+      --bg2:        #0f0f1a;
+      --cyan:       #00f5ff;
+      --cyan-10:    rgba(0,245,255,.10);
+      --cyan-20:    rgba(0,245,255,.20);
+      --purple:     #8b00ff;
+      --purple-10:  rgba(139,0,255,.10);
+      --pink:       #ff00aa;
+      --text:       #f0f0ff;
+      --muted:      #8888aa;
+      --glass:      rgba(255,255,255,.032);
+      --gb:         rgba(0,245,255,.12);
+      --glow-c:     0 0 18px rgba(0,245,255,.45), 0 0 45px rgba(0,245,255,.18);
+      --glow-p:     0 0 18px rgba(139,0,255,.45), 0 0 45px rgba(139,0,255,.18);
+      --ff:         'Space Grotesk', sans-serif;
+      --mono:       'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--ff); overflow-x: hidden; cursor: none; }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 2px; }
+
+    /* ═══════════════ LOADER ═══════════════ */
+    #loader {
+      position: fixed; inset: 0; background: var(--bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 9999; transition: opacity .7s ease, visibility .7s ease;
+    }
+    #loader.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-logo {
+      font-family: var(--mono); font-size: clamp(3.5rem,10vw,6rem); font-weight: 700;
+      color: var(--cyan); letter-spacing: .25em; text-shadow: var(--glow-c);
+      animation: loaderPulse 1.2s ease-in-out infinite;
+    }
+    .loader-bar { width: 180px; height: 2px; background: rgba(0,245,255,.15); margin-top: 1.8rem; border-radius: 1px; overflow: hidden; }
+    .loader-fill { height: 100%; background: var(--cyan); box-shadow: var(--glow-c); animation: fillBar 2.3s ease forwards; }
+    .loader-sub {
+      font-family: var(--mono); font-size: .7rem; color: var(--muted); letter-spacing: .35em;
+      margin-top: 1rem; animation: blink 1s step-end infinite;
+    }
+    @keyframes loaderPulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    @keyframes fillBar { from{width:0} to{width:100%} }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ═══════════════ CUSTOM CURSOR ═══════════════ */
+    #cursor {
+      width: 9px; height: 9px; background: var(--cyan); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 10000;
+      transform: translate(-50%,-50%); box-shadow: var(--glow-c);
+      transition: transform .08s ease, background .2s ease;
+    }
+    #cursor-ring {
+      width: 34px; height: 34px; border: 1.5px solid rgba(0,245,255,.35); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%); transition: all .14s ease;
+    }
+    .cursor-hover #cursor { transform: translate(-50%,-50%) scale(2.2); background: var(--purple); }
+    .cursor-hover #cursor-ring { transform: translate(-50%,-50%) scale(1.5); border-color: var(--purple); }
+
+    /* ═══════════════ THREE.JS CANVAS ═══════════════ */
+    #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+    /* ═══════════════ LANG SWITCHER ═══════════════ */
+    #lang-sw {
+      position: fixed; top: 1.1rem; right: 1.4rem; z-index: 1002;
+      display: flex; background: var(--glass); border: 1px solid var(--gb);
+      border-radius: 2rem; overflow: hidden; backdrop-filter: blur(14px);
+    }
+    .lbtn {
+      padding: .38rem .9rem; font-family: var(--mono); font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; color: var(--muted); background: transparent; border: none;
+      cursor: pointer; transition: all .3s ease;
+    }
+    .lbtn.active { background: var(--cyan); color: #000; }
+    .lbtn:hover:not(.active) { color: var(--cyan); }
+
+    /* ═══════════════ NAV ═══════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.2rem,5vw,4rem); z-index: 1000;
+      transition: background .4s ease, border-color .4s ease;
+    }
+    nav.scrolled { background: rgba(10,10,15,.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gb); }
+    .nav-logo { font-family: var(--mono); font-size: 1.35rem; font-weight: 700; color: var(--cyan); text-decoration: none; text-shadow: var(--glow-c); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: .85rem; letter-spacing: .07em;
+      font-weight: 500; position: relative; transition: color .3s ease;
+    }
+    .nav-links a::after {
+      content:''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+      background: var(--cyan); transform: scaleX(0); transition: transform .3s ease;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: var(--cyan); transition: all .3s ease; border-radius: 1px; }
+
+    /* ═══════════════ SECTION BASE ═══════════════ */
+    section { position: relative; z-index: 1; padding: clamp(5rem,10vh,8rem) clamp(1.5rem,8vw,9rem); }
+    .s-tag { font-family: var(--mono); font-size: .72rem; letter-spacing: .32em; color: var(--cyan); text-transform: uppercase; margin-bottom: .7rem; }
+    .s-title { font-size: clamp(1.9rem,4.5vw,3.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 3.5rem; }
+    .s-title span { color: var(--cyan); }
+
+    /* ═══════════════ HERO ═══════════════ */
+    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 68px; overflow: hidden; }
+    .hero-inner { max-width: 860px; }
+    .hero-badge {
+      font-family: var(--mono); font-size: .78rem; letter-spacing: .3em; color: var(--cyan);
+      margin-bottom: 1.8rem; opacity: 0; animation: fadeUp .7s 2s forwards;
+    }
+    .hero-name { font-size: clamp(3rem,9vw,6.5rem); font-weight: 700; line-height: .95; margin-bottom: 1.6rem; }
+    .glitch { position: relative; display: inline-block; }
+    .glitch::before, .glitch::after {
+      content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%;
+    }
+    .glitch::before {
+      color: var(--cyan); clip-path: polygon(0 0,100% 0,100% 38%,0 38%);
+      text-shadow: -2px 0 var(--purple); animation: glitchT 3.8s ease-in-out infinite;
+    }
+    .glitch::after {
+      color: var(--purple); clip-path: polygon(0 62%,100% 62%,100% 100%,0 100%);
+      text-shadow: 2px 0 var(--cyan); animation: glitchB 4.2s ease-in-out infinite;
+    }
+    @keyframes glitchT { 0%,88%,100%{transform:none;opacity:0} 90%{transform:translateX(-4px) skewX(-2deg);opacity:.85} 93%{transform:translateX(4px);opacity:.85} 95%{transform:none;opacity:0} }
+    @keyframes glitchB { 0%,86%,100%{transform:none;opacity:0} 88%{transform:translateX(4px) skewX(2deg);opacity:.85} 92%{transform:translateX(-3px);opacity:.85} 94%{transform:none;opacity:0} }
+
+    .hero-typed { font-size: clamp(.95rem,2.2vw,1.4rem); color: var(--muted); margin-bottom: 2.5rem; height: 2.2em; opacity: 0; animation: fadeUp .7s 2.4s forwards; }
+    .typed-cursor { color: var(--cyan) !important; }
+
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 4rem; opacity: 0; animation: fadeUp .7s 2.8s forwards; }
+    .btn-p {
+      padding: .82rem 2rem; background: var(--cyan); color: #000; border: none;
+      border-radius: .5rem; font-family: var(--ff); font-weight: 700; font-size: .88rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: .45rem;
+      cursor: pointer; transition: all .3s ease; box-shadow: var(--glow-c);
+    }
+    .btn-p:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(0,245,255,.6),0 0 60px rgba(0,245,255,.25); }
+    .btn-o {
+      padding: .82rem 2rem; background: transparent; color: var(--cyan);
+      border: 1px solid var(--cyan); border-radius: .5rem; font-family: var(--ff);
+      font-weight: 700; font-size: .88rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: .45rem;
+      cursor: pointer; transition: all .3s ease;
+    }
+    .btn-o:hover { background: var(--cyan-10); transform: translateY(-3px); box-shadow: var(--glow-c); }
+
+    .hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; opacity: 0; animation: fadeUp .7s 3.1s forwards; }
+    .stat-num { font-family: var(--mono); font-size: 2.4rem; font-weight: 700; color: var(--cyan); line-height: 1; }
+    .stat-lbl { font-size: .75rem; color: var(--muted); letter-spacing: .12em; margin-top: .25rem; }
+
+    .orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; animation: orbf 7s ease-in-out infinite; }
+    .o1 { width: 380px; height: 380px; background: rgba(0,245,255,.06); right: 8%; top: 15%; }
+    .o2 { width: 280px; height: 280px; background: rgba(139,0,255,.06); right: 22%; bottom: 22%; animation-delay: -3.5s; }
+    .o3 { width: 180px; height: 180px; background: rgba(255,0,170,.04); right: 3%; bottom: 38%; animation-delay: -1.8s; }
+    @keyframes orbf { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-28px) scale(1.04)} }
+
+    .scroll-ind { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; opacity: 0; animation: fadeIn 1s 4s forwards; }
+    .scroll-ind span { font-size: .65rem; letter-spacing: .22em; color: var(--muted); text-transform: uppercase; }
+    .scroll-line { width: 1px; height: 46px; background: linear-gradient(to bottom, var(--cyan), transparent); animation: sline 2s ease-in-out infinite; }
+    @keyframes sline { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(.4);opacity:.4} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    /* ═══════════════ ABOUT ═══════════════ */
+    #about { background: linear-gradient(180deg,transparent,rgba(139,0,255,.025),transparent); }
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center; }
+    .about-text p { color: var(--muted); line-height: 1.85; margin-bottom: 1.4rem; font-size: .98rem; }
+    .about-text .hl { color: var(--cyan); font-weight: 600; }
+    .about-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2rem; margin-top: 2rem; }
+    .meta-lbl { font-size: .68rem; letter-spacing: .15em; color: var(--muted); text-transform: uppercase; margin-bottom: .2rem; }
+    .meta-val { font-size: .88rem; color: var(--text); font-weight: 600; }
+
+    .glass-card {
+      background: var(--glass); border: 1px solid var(--gb); border-radius: 1.5rem;
+      padding: 2.2rem; backdrop-filter: blur(20px); position: relative; overflow: hidden;
+    }
+    .glass-card::before {
+      content:''; position: absolute; top: -1px; left: 15%; right: 15%; height: 1px;
+      background: linear-gradient(to right,transparent,var(--cyan),transparent);
+    }
+    .avatar-box {
+      width: 220px; height: 220px; margin: 0 auto 2rem;
+      background: linear-gradient(135deg,rgba(0,245,255,.1),rgba(139,0,255,.1));
+      border: 1px solid var(--gb); border-radius: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 3.5rem; font-weight: 700;
+      color: var(--cyan); text-shadow: var(--glow-c);
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .tag {
+      padding: .28rem .75rem; background: var(--cyan-10); border: 1px solid rgba(0,245,255,.15);
+      border-radius: 2rem; font-size: .72rem; color: var(--cyan); font-family: var(--mono);
+    }
+
+    /* ═══════════════ SKILLS ═══════════════ */
+    #skills {}
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(145px,1fr)); gap: 1.5rem; }
+    .sk-card {
+      background: var(--glass); border: 1px solid var(--gb); border-radius: 1.2rem;
+      padding: 1.8rem 1rem 1.5rem; text-align: center; backdrop-filter: blur(12px);
+      transition: all .4s ease; cursor: default;
+    }
+    .sk-card:hover { border-color: var(--cyan); transform: translateY(-6px); box-shadow: 0 0 24px rgba(0,245,255,.12), 0 0 48px rgba(0,245,255,.05); }
+    .sk-card.purple:hover { border-color: var(--purple); box-shadow: 0 0 24px rgba(139,0,255,.15); }
+    .sk-card.pink:hover { border-color: var(--pink); box-shadow: 0 0 24px rgba(255,0,170,.15); }
+
+    .ring-wrap { position: relative; width: 88px; height: 88px; margin: 0 auto 1.1rem; }
+    .ring-wrap svg { transform: rotate(-90deg); }
+    .ring-bg { stroke: rgba(255,255,255,.04); }
+    .ring-fill { stroke: var(--cyan); stroke-linecap: round; stroke-dasharray: 251; stroke-dashoffset: 251; transition: stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1); }
+    .sk-card.purple .ring-fill { stroke: var(--purple); }
+    .sk-card.pink .ring-fill { stroke: var(--pink); }
+    .ring-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 1.05rem; font-weight: 700; }
+    .sk-name { font-size: .84rem; font-weight: 600; color: var(--text); margin-bottom: .25rem; }
+    .sk-sub { font-size: .67rem; color: var(--muted); }
+
+    /* ═══════════════ EXPERIENCE ═══════════════ */
+    #experience {}
+    .timeline { position: relative; padding-left: 1.8rem; }
+    .timeline::before { content:''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom,var(--cyan),var(--purple),rgba(0,245,255,.05)); }
+    .tl-item { position: relative; margin-bottom: 2.8rem; padding-left: 2.2rem; }
+    .tl-item::before {
+      content:''; position: absolute; left: -.45rem; top: .55rem;
+      width: 13px; height: 13px; border-radius: 50%; background: var(--bg);
+      border: 2px solid var(--cyan); box-shadow: var(--glow-c); z-index: 1;
+      transition: background .3s ease;
+    }
+    .tl-item:hover::before { background: var(--cyan); }
+    .tl-date { font-family: var(--mono); font-size: .72rem; color: var(--cyan); letter-spacing: .1em; margin-bottom: .5rem; }
+    .tl-card {
+      background: var(--glass); border: 1px solid var(--gb); border-radius: 1rem;
+      padding: 1.4rem 1.8rem; backdrop-filter: blur(12px);
+      transition: all .4s ease;
+    }
+    .tl-card:hover { border-color: rgba(0,245,255,.28); box-shadow: 0 0 28px rgba(0,245,255,.07); transform: translateX(6px); }
+    .tl-company { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+    .tl-role { font-size: .88rem; color: var(--cyan); font-weight: 500; margin-bottom: .8rem; }
+    .tl-client { font-size: .78rem; color: var(--muted); margin-bottom: .7rem; font-style: italic; }
+    .tl-desc { font-size: .83rem; color: var(--muted); line-height: 1.72; margin-bottom: 1rem; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .tl-tag {
+      padding: .18rem .65rem; background: var(--purple-10); border: 1px solid rgba(139,0,255,.22);
+      border-radius: 2rem; font-size: .67rem; color: #c77dff; font-family: var(--mono);
+    }
+
+    /* ═══════════════ PROJECTS ═══════════════ */
+    #projects { background: linear-gradient(180deg,transparent,var(--cyan-10)5%,transparent); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(310px,1fr)); gap: 2rem; }
+    .proj-card {
+      background: var(--glass); border: 1px solid var(--gb); border-radius: 1.5rem;
+      padding: 2rem; backdrop-filter: blur(15px); transition: border-color .4s ease;
+      transform-style: preserve-3d; position: relative; overflow: hidden;
+    }
+    .proj-card::after {
+      content:''; position: absolute; inset: 0; border-radius: 1.5rem;
+      background: linear-gradient(135deg,rgba(0,245,255,.03),rgba(139,0,255,.03));
+      opacity: 0; transition: opacity .4s ease;
+    }
+    .proj-card:hover { border-color: var(--cyan); }
+    .proj-card:hover::after { opacity: 1; }
+
+    .proj-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.1rem; }
+    .proj-icon {
+      width: 46px; height: 46px; border-radius: .8rem;
+      background: linear-gradient(135deg,rgba(0,245,255,.12),rgba(139,0,255,.12));
+      border: 1px solid var(--gb); display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .badge { padding: .22rem .65rem; border-radius: 2rem; font-size: .63rem; font-family: var(--mono); font-weight: 700; letter-spacing: .08em; }
+    .badge-live { background: rgba(0,245,255,.12); color: var(--cyan); border: 1px solid rgba(0,245,255,.25); }
+    .badge-ai { background: var(--purple-10); color: #c77dff; border: 1px solid rgba(139,0,255,.25); }
+
+    .proj-title { font-size: 1.05rem; font-weight: 700; margin-bottom: .65rem; }
+    .proj-desc { font-size: .82rem; color: var(--muted); line-height: 1.72; margin-bottom: 1.4rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.4rem; }
+    .proj-tag { padding: .18rem .65rem; background: var(--cyan-10); border: 1px solid rgba(0,245,255,.1); border-radius: 2rem; font-size: .67rem; color: var(--muted); font-family: var(--mono); }
+    .proj-links { display: flex; gap: 1.2rem; }
+    .proj-link { font-size: .78rem; color: var(--cyan); text-decoration: none; display: flex; align-items: center; gap: .35rem; font-weight: 600; transition: color .3s ease; }
+    .proj-link:hover { color: var(--text); }
+
+    /* ═══════════════ EDUCATION & CERTS ═══════════════ */
+    #education {}
+    .edu-cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+    .edu-item { display: flex; gap: 1.1rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,.045); }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-year { font-family: var(--mono); font-size: .75rem; color: var(--cyan); min-width: 3.5rem; padding-top: .18rem; }
+    .edu-degree { font-size: .92rem; font-weight: 600; margin-bottom: .25rem; }
+    .edu-school { font-size: .78rem; color: var(--muted); }
+    .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .cert-item {
+      background: var(--glass); border: 1px solid var(--gb); border-radius: .75rem;
+      padding: .75rem 1rem; display: flex; align-items: center; gap: .65rem;
+      transition: border-color .3s ease;
+    }
+    .cert-item:hover { border-color: var(--cyan); }
+    .cert-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; box-shadow: var(--glow-c); }
+    .cert-name { font-size: .78rem; color: var(--text); }
+
+    /* ═══════════════ CONTACT ═══════════════ */
+    #contact { text-align: center; }
+    .contact-sub { font-size: 1rem; color: var(--muted); margin-bottom: 3rem; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.75; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; }
+    .contact-a {
+      display: flex; align-items: center; gap: .65rem; padding: .95rem 1.8rem;
+      background: var(--glass); border: 1px solid var(--gb); border-radius: .8rem;
+      color: var(--text); text-decoration: none; font-weight: 500; font-size: .88rem;
+      backdrop-filter: blur(12px); transition: all .4s ease;
+    }
+    .contact-a:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-4px); box-shadow: 0 0 28px rgba(0,245,255,.1); }
+
+    /* ═══════════════ FOOTER ═══════════════ */
+    footer {
+      text-align: center; padding: 2rem; position: relative; z-index: 1;
+      border-top: 1px solid rgba(255,255,255,.045); color: var(--muted); font-size: .78rem;
+    }
+    footer span { color: var(--cyan); }
+
+    /* ═══════════════ MOBILE NAV ═══════════════ */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; background: rgba(10,10,15,.97);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem; z-index: 998; backdrop-filter: blur(20px);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1.6rem; font-weight: 600; transition: color .3s ease; }
+    .mobile-menu a:hover { color: var(--cyan); }
+
+    /* ═══════════════ RESPONSIVE ═══════════════ */
+    @media (max-width: 920px) {
+      .about-grid, .edu-cert-grid { grid-template-columns: 1fr; }
+      #cursor, #cursor-ring { display: none; }
+      body { cursor: auto; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+    }
+    @media (max-width: 620px) {
+      section { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .projects-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; }
+      .hero-cta { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═════════════ LOADER ═════════════ -->
+<div id="loader">
+  <div class="loader-logo">YMI</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+  <div class="loader-sub">INITIALIZING...</div>
+</div>
+
+<!-- ═════════════ CURSOR ═════════════ -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ═════════════ THREE.JS CANVAS ═════════════ -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- ═════════════ LANG SWITCHER ═════════════ -->
+<div id="lang-sw">
+  <button class="lbtn active" data-lang="en">EN</button>
+  <button class="lbtn" data-lang="fr">FR</button>
+</div>
+
+<!-- ═════════════ NAV ═════════════ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">YMI</a>
+  <ul class="nav-links">
+    <li><a href="#about"      data-en="About"      data-fr="À propos">About</a></li>
+    <li><a href="#skills"     data-en="Skills"     data-fr="Compétences">Skills</a></li>
+    <li><a href="#experience" data-en="Experience" data-fr="Expérience">Experience</a></li>
+    <li><a href="#projects"   data-en="Projects"   data-fr="Projets">Projects</a></li>
+    <li><a href="#education"  data-en="Education"  data-fr="Formation">Education</a></li>
+    <li><a href="#contact"    data-en="Contact"    data-fr="Contact">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about"      data-en="About"      data-fr="À propos"   onclick="closeMobile()">About</a>
+  <a href="#skills"     data-en="Skills"     data-fr="Compétences" onclick="closeMobile()">Skills</a>
+  <a href="#experience" data-en="Experience" data-fr="Expérience"  onclick="closeMobile()">Experience</a>
+  <a href="#projects"   data-en="Projects"   data-fr="Projets"     onclick="closeMobile()">Projects</a>
+  <a href="#education"  data-en="Education"  data-fr="Formation"   onclick="closeMobile()">Education</a>
+  <a href="#contact"    data-en="Contact"    data-fr="Contact"     onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ═════════════════════════════════════════════════════════
+     HERO
+═════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="hero-inner">
+    <div class="hero-badge" data-en="// QA AUTOMATION ENGINEER  &amp;  AI TESTING SPECIALIST" data-fr="// INGÉNIEUR QA AUTOMATISATION  &amp;  SPÉCIALISTE IA">// QA AUTOMATION ENGINEER  &amp;  AI TESTING SPECIALIST</div>
+    <h1 class="hero-name">
+      <span class="glitch" data-text="Yahya">Yahya</span><br>
+      <span class="glitch" data-text="Michbal" style="color:var(--cyan);text-shadow:var(--glow-c)">Michbal</span>
+    </h1>
+    <div class="hero-typed"><span id="typed-el"></span></div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-p" data-en="View Projects →" data-fr="Voir les Projets →">View Projects →</a>
+      <a href="#contact"  class="btn-o" data-en="Get in Touch"    data-fr="Me Contacter">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-lbl" data-en="Years Experience" data-fr="Ans d'Expérience">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">7</div>
+        <div class="stat-lbl" data-en="Companies / Missions" data-fr="Entreprises / Missions">Companies / Missions</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-lbl" data-en="Open-Source Projects" data-fr="Projets Open-Source">Open-Source Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-lbl" data-en="Certifications" data-fr="Certifications">Certifications</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span data-en="SCROLL" data-fr="DÉFILER">SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════════
+     ABOUT
+═════════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="s-tag" data-en="01 // About Me" data-fr="01 // À Propos">01 // About Me</div>
+  <div class="about-grid">
+    <div class="about-text" data-aos="fade-right">
+      <h2 class="s-title" data-en="Crafting <span>Quality</span> Through Automation" data-fr-html="L'<span>Qualité</span> par l'Automatisation" data-en-html="Crafting <span>Quality</span> Through Automation">Crafting <span>Quality</span> Through Automation</h2>
+      <p data-en="Passionate QA Automation Engineer with 3+ years of experience delivering intelligent, scalable testing solutions across Telecom, Banking, and Retail sectors. I specialize in transforming manual quality processes into robust automated frameworks — from CI/CD pipelines to AI-augmented test generation." data-fr="Ingénieur QA Automatisation passionné, fort de plus de 3 ans d'expérience dans la conception de solutions de test intelligentes et scalables pour les secteurs Télécom, Banque et Retail. Je me spécialise dans la transformation des processus qualité manuels en frameworks automatisés robustes — des pipelines CI/CD à la génération de tests augmentée par l'IA.">
+        Passionate QA Automation Engineer with 3+ years of experience delivering intelligent, scalable testing solutions across Telecom, Banking, and Retail sectors. I specialize in transforming manual quality processes into robust automated frameworks — from CI/CD pipelines to AI-augmented test generation.
+      </p>
+      <p data-en="Currently at <span class='hl'>Sogeti</span>, I lead test automation missions for major French companies — architecting Playwright frameworks, integrating Kafka-based testing, and pioneering AI-powered test generation with Claude API." data-fr="Actuellement chez <span class='hl'>Sogeti</span>, je pilote des missions d'automatisation des tests pour de grandes entreprises françaises — conception de frameworks Playwright, intégration de tests Kafka, et développement de générateurs de tests pilotés par l'IA via l'API Claude.">
+        Currently at <span class="hl">Sogeti</span>, I lead test automation missions for major French companies — architecting Playwright frameworks, integrating Kafka-based testing, and pioneering AI-powered test generation with Claude API.
+      </p>
+      <div class="about-meta">
+        <div>
+          <div class="meta-lbl" data-en="Location" data-fr="Localisation">Location</div>
+          <div class="meta-val">Paris, France</div>
+        </div>
+        <div>
+          <div class="meta-lbl" data-en="Experience" data-fr="Expérience">Experience</div>
+          <div class="meta-val" data-en="3+ Years" data-fr="3+ Ans">3+ Years</div>
+        </div>
+        <div>
+          <div class="meta-lbl" data-en="Languages" data-fr="Langues">Languages</div>
+          <div class="meta-val">🇫🇷 C1 · 🇬🇧 C1 · 🇲🇦 C2</div>
+        </div>
+        <div>
+          <div class="meta-lbl" data-en="Sectors" data-fr="Secteurs">Sectors</div>
+          <div class="meta-val" data-en="Telecom · Banking · Retail" data-fr="Télécom · Banque · Retail">Telecom · Banking · Retail</div>
+        </div>
+        <div>
+          <div class="meta-lbl" data-en="Status" data-fr="Statut">Status</div>
+          <div class="meta-val" style="color:var(--cyan)" data-en="Open to opportunities" data-fr="Ouvert aux opportunités">Open to opportunities</div>
+        </div>
+        <div>
+          <div class="meta-lbl" data-en="Focus" data-fr="Domaine">Focus</div>
+          <div class="meta-val" data-en="AI-Augmented Testing" data-fr="Tests Augmentés par l'IA">AI-Augmented Testing</div>
+        </div>
+      </div>
+    </div>
+
+    <div data-aos="fade-left">
+      <div class="glass-card">
+        <div class="avatar-box">YMI</div>
+        <div class="tags">
+          <span class="tag">Playwright</span>
+          <span class="tag">Robot Framework</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">GitLab CI</span>
+          <span class="tag">Claude AI</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">REST API</span>
+          <span class="tag">Jira</span>
+          <span class="tag">Xray</span>
+          <span class="tag">Agile</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════════
+     SKILLS
+═════════════════════════════════════════════════════════ -->
+<section id="skills">
+  <div class="s-tag" data-en="02 // Core Skills" data-fr="02 // Compétences Clés">02 // Core Skills</div>
+  <h2 class="s-title" data-en-html="Technical <span>Arsenal</span>" data-fr-html="Arsenal <span>Technique</span>">Technical <span>Arsenal</span></h2>
+
+  <div class="skills-grid">
+    <!-- Cyan -->
+    <div class="sk-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="95"/></svg><div class="ring-pct">95%</div></div>
+      <div class="sk-name">Playwright</div><div class="sk-sub">E2E Automation</div>
+    </div>
+    <div class="sk-card" data-aos="fade-up" data-aos-delay="60">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="88"/></svg><div class="ring-pct">88%</div></div>
+      <div class="sk-name">CI/CD</div><div class="sk-sub">GitHub Actions · GitLab CI</div>
+    </div>
+    <div class="sk-card" data-aos="fade-up" data-aos-delay="120">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="87"/></svg><div class="ring-pct">87%</div></div>
+      <div class="sk-name">TypeScript / JS</div><div class="sk-sub">Test Scripting</div>
+    </div>
+    <div class="sk-card" data-aos="fade-up" data-aos-delay="180">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="85"/></svg><div class="ring-pct">85%</div></div>
+      <div class="sk-name" data-en="API Testing" data-fr="Tests API">API Testing</div><div class="sk-sub">Postman · Bruno · REST</div>
+    </div>
+    <!-- Purple -->
+    <div class="sk-card purple" data-aos="fade-up" data-aos-delay="240">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="82"/></svg><div class="ring-pct">82%</div></div>
+      <div class="sk-name">Robot Framework</div><div class="sk-sub" data-en="Keyword-Driven" data-fr="Piloté par Mots-Clés">Keyword-Driven</div>
+    </div>
+    <div class="sk-card purple" data-aos="fade-up" data-aos-delay="300">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="82"/></svg><div class="ring-pct">82%</div></div>
+      <div class="sk-name">Python</div><div class="sk-sub" data-en="Scripting & Automation" data-fr="Scripting & Automatisation">Scripting & Automation</div>
+    </div>
+    <div class="sk-card purple" data-aos="fade-up" data-aos-delay="360">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="75"/></svg><div class="ring-pct">75%</div></div>
+      <div class="sk-name">Java</div><div class="sk-sub">Backend & Tests</div>
+    </div>
+    <!-- Pink -->
+    <div class="sk-card pink" data-aos="fade-up" data-aos-delay="420">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="90"/></svg><div class="ring-pct">90%</div></div>
+      <div class="sk-name">Agile / Scrum</div><div class="sk-sub" data-en="Methodologies" data-fr="Méthodologies">Methodologies</div>
+    </div>
+    <div class="sk-card pink" data-aos="fade-up" data-aos-delay="480">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="78"/></svg><div class="ring-pct">78%</div></div>
+      <div class="sk-name" data-en="Databases" data-fr="Bases de Données">Databases</div><div class="sk-sub">MySQL · MongoDB · SQL</div>
+    </div>
+    <div class="sk-card pink" data-aos="fade-up" data-aos-delay="540">
+      <div class="ring-wrap"><svg width="88" height="88"><circle class="ring-bg" cx="44" cy="44" r="40" fill="none" stroke-width="5"/><circle class="ring-fill" cx="44" cy="44" r="40" fill="none" stroke-width="5" data-pct="72"/></svg><div class="ring-pct">72%</div></div>
+      <div class="sk-name">AI Integration</div><div class="sk-sub">Claude API · LLM Testing</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════════
+     EXPERIENCE
+═════════════════════════════════════════════════════════ -->
+<section id="experience">
+  <div class="s-tag" data-en="03 // Experience" data-fr="03 // Expérience">03 // Experience</div>
+  <h2 class="s-title" data-en-html="Professional <span>Journey</span>" data-fr-html="Parcours <span>Professionnel</span>">Professional <span>Journey</span></h2>
+
+  <div class="timeline">
+
+    <!-- Sogeti -->
+    <div class="tl-item" data-aos="fade-right">
+      <div class="tl-date" data-en="Sept 2024 — Present" data-fr="Sept 2024 — Aujourd'hui">Sept 2024 — Present</div>
+      <div class="tl-card">
+        <div class="tl-company">Sogeti (Capgemini Group)</div>
+        <div class="tl-role" data-en="QA Automation Engineer" data-fr="Ingénieur QA Automatisation">QA Automation Engineer</div>
+        <div class="tl-desc" data-en="Leading end-to-end test automation strategy for major French clients across Banking, Retail, and Telecom sectors. Designing Playwright frameworks, CI/CD pipelines, and pioneering AI-powered test generation tools." data-fr="Pilotage de la stratégie d'automatisation des tests pour de grands clients français dans les secteurs Banque, Retail et Télécom. Conception de frameworks Playwright, pipelines CI/CD et développement d'outils de génération de tests assistée par IA.">
+          Leading end-to-end test automation strategy for major French clients across Banking, Retail, and Telecom sectors. Designing Playwright frameworks, CI/CD pipelines, and pioneering AI-powered test generation tools.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Playwright</span><span class="tl-tag">Bruno</span><span class="tl-tag">REST API</span><span class="tl-tag">GitHub Actions</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adeo Pick&Go -->
+    <div class="tl-item" data-aos="fade-right" data-aos-delay="80">
+      <div class="tl-date">Nov 2025 — Dec 2025</div>
+      <div class="tl-card">
+        <div class="tl-company">Adeo / Leroy Merlin</div>
+        <div class="tl-role" data-en="QA Engineer — Pick&amp;Go V2 Mission" data-fr="Ingénieur QA — Mission Pick&amp;Go V2">QA Engineer — Pick&amp;Go V2 Mission</div>
+        <div class="tl-client" data-en="Sogeti Consulting Mission · Retail" data-fr="Mission Sogeti Consulting · Retail">Sogeti Consulting Mission · Retail</div>
+        <div class="tl-desc" data-en="Implemented Playwright E2E tests for Pick&Go V2 warehouse management system. Set up Kafka consumer test stubs, integrated Xray test management, and built GitHub CI reporting dashboards." data-fr="Mise en place des tests E2E Playwright pour le système de gestion d'entrepôt Pick&Go V2. Implémentation de stubs Kafka, intégration Xray et tableaux de bord CI GitHub.">
+          Implemented Playwright E2E tests for Pick&Go V2 warehouse management system. Set up Kafka consumer test stubs, integrated Xray test management, and built GitHub CI reporting dashboards.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Playwright</span><span class="tl-tag">Xray</span><span class="tl-tag">Kafka</span><span class="tl-tag">Kotlin</span><span class="tl-tag">GitHub CI</span><span class="tl-tag">Jira</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FDJ -->
+    <div class="tl-item" data-aos="fade-right" data-aos-delay="120">
+      <div class="tl-date" data-en="Mar 2025 — Sept 2025" data-fr="Mars 2025 — Sept 2025">Mar 2025 — Sept 2025</div>
+      <div class="tl-card">
+        <div class="tl-company">FDJ (Française des Jeux)</div>
+        <div class="tl-role" data-en="Quality Engineer" data-fr="Ingénieur Qualité">Quality Engineer</div>
+        <div class="tl-client" data-en="Sogeti Consulting Mission · Banking / Gaming" data-fr="Mission Sogeti Consulting · Banque / Gaming">Sogeti Consulting Mission · Banking / Gaming</div>
+        <div class="tl-desc" data-en="Built and maintained automated test suites for FDJ's digital gaming platform using Playwright and JavaScript. Created GitLab CI pipelines and maintained Confluence documentation standards." data-fr="Construction et maintenance de suites de tests automatisés pour la plateforme digitale de FDJ avec Playwright et JavaScript. Création de pipelines GitLab CI et documentation Confluence.">
+          Built and maintained automated test suites for FDJ's digital gaming platform using Playwright and JavaScript. Created GitLab CI pipelines and maintained Confluence documentation standards.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Playwright</span><span class="tl-tag">JavaScript</span><span class="tl-tag">GitLab CI</span><span class="tl-tag">Confluence</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adeo PDP -->
+    <div class="tl-item" data-aos="fade-right" data-aos-delay="160">
+      <div class="tl-date" data-en="Jan 2025 — Mar 2025" data-fr="Jan 2025 — Mars 2025">Jan 2025 — Mar 2025</div>
+      <div class="tl-card">
+        <div class="tl-company">Adeo / Leroy Merlin</div>
+        <div class="tl-role" data-en="QA Engineer — PDP Mission" data-fr="Ingénieur QA — Mission PDP">QA Engineer — PDP Mission</div>
+        <div class="tl-client" data-en="Sogeti Consulting Mission · Retail" data-fr="Mission Sogeti Consulting · Retail">Sogeti Consulting Mission · Retail</div>
+        <div class="tl-desc" data-en="Developed BDD test suites with Playwright, Cucumber and TypeScript for the Product Data Platform. Automated regression testing integrated into GitLab CI/CD pipelines." data-fr="Développement de suites de tests BDD avec Playwright, Cucumber et TypeScript pour la Product Data Platform. Automatisation des tests de régression intégrés aux pipelines GitLab CI/CD.">
+          Developed BDD test suites with Playwright, Cucumber and TypeScript for the Product Data Platform. Automated regression testing integrated into GitLab CI/CD pipelines.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Playwright</span><span class="tl-tag">Cucumber</span><span class="tl-tag">TypeScript</span><span class="tl-tag">GitLab CI</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Worldline -->
+    <div class="tl-item" data-aos="fade-right" data-aos-delay="200">
+      <div class="tl-date" data-en="Sept 2023 — Aug 2024" data-fr="Sept 2023 — Août 2024">Sept 2023 — Aug 2024</div>
+      <div class="tl-card">
+        <div class="tl-company">Worldline</div>
+        <div class="tl-role" data-en="Full Stack Developer" data-fr="Développeur Full Stack">Full Stack Developer</div>
+        <div class="tl-desc" data-en="Developed payment platform features in Java and Python. Designed and executed API test plans with Postman and SQL validation scripts. Managed test cases in TestRail across Scrum sprints." data-fr="Développement de fonctionnalités de plateforme de paiement en Java et Python. Conception et exécution de plans de tests API avec Postman et scripts SQL. Gestion des cas de tests dans TestRail sur sprints Scrum.">
+          Developed payment platform features in Java and Python. Designed and executed API test plans with Postman and SQL validation scripts. Managed test cases in TestRail across Scrum sprints.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Java</span><span class="tl-tag">Python</span><span class="tl-tag">Postman</span><span class="tl-tag">SQL</span><span class="tl-tag">TestRail</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ematrape -->
+    <div class="tl-item" data-aos="fade-right" data-aos-delay="240">
+      <div class="tl-date" data-en="Jul 2023 — Sept 2023" data-fr="Juil 2023 — Sept 2023">Jul 2023 — Sept 2023</div>
+      <div class="tl-card">
+        <div class="tl-company">Ematrape</div>
+        <div class="tl-role" data-en="Full Stack Developer" data-fr="Développeur Full Stack">Full Stack Developer</div>
+        <div class="tl-desc" data-en="Built web application features with Symfony (PHP), MySQL, and wrote integration tests for REST API endpoints." data-fr="Développement de fonctionnalités web avec Symfony (PHP), MySQL et rédaction de tests d'intégration pour les endpoints REST API.">
+          Built web application features with Symfony (PHP), MySQL, and wrote integration tests for REST API endpoints.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Symfony</span><span class="tl-tag">PHP</span><span class="tl-tag">SQL</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orange Morocco -->
+    <div class="tl-item" data-aos="fade-right" data-aos-delay="280">
+      <div class="tl-date" data-en="May 2022 — Aug 2022" data-fr="Mai 2022 — Août 2022">May 2022 — Aug 2022</div>
+      <div class="tl-card">
+        <div class="tl-company">Orange Morocco</div>
+        <div class="tl-role" data-en="Junior Developer Intern" data-fr="Stagiaire Développeur Junior">Junior Developer Intern</div>
+        <div class="tl-desc" data-en="Developed internal automation scripts with Python and PowerShell for network monitoring tasks. First exposure to telecom infrastructure and IT operations." data-fr="Développement de scripts d'automatisation interne avec Python et PowerShell pour la surveillance réseau. Première exposition à l'infrastructure télécom et aux opérations IT.">
+          Developed internal automation scripts with Python and PowerShell for network monitoring tasks. First exposure to telecom infrastructure and IT operations.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Python</span><span class="tl-tag">PowerShell</span><span class="tl-tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════════
+     PROJECTS
+═════════════════════════════════════════════════════════ -->
+<section id="projects">
+  <div class="s-tag" data-en="04 // Open Source" data-fr="04 // Open Source">04 // Open Source</div>
+  <h2 class="s-title" data-en-html="Featured <span>Projects</span>" data-fr-html="Projets <span>Phares</span>">Featured <span>Projects</span></h2>
+
+  <div class="projects-grid">
+
+    <!-- ai-test-generator -->
+    <div class="proj-card" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15" data-aos="fade-up">
+      <div class="proj-head">
+        <div class="proj-icon">🤖</div>
+        <span class="badge badge-ai">AI-POWERED</span>
+      </div>
+      <h3 class="proj-title">ai-test-generator</h3>
+      <p class="proj-desc" data-en="CLI tool that crawls any URL with headless Playwright, sends the page structure to Claude Sonnet via streaming SSE, and delivers a fully runnable TypeScript Playwright test suite — all in seconds." data-fr="Outil CLI qui crawle n'importe quelle URL avec Playwright headless, envoie la structure de la page à Claude Sonnet via SSE streaming, et génère une suite de tests Playwright TypeScript prête à l'emploi — en quelques secondes.">
+        CLI tool that crawls any URL with headless Playwright, sends the page structure to Claude Sonnet via streaming SSE, and delivers a fully runnable TypeScript Playwright test suite — all in seconds.
+      </p>
+      <div class="proj-tags">
+        <span class="proj-tag">TypeScript</span><span class="proj-tag">Claude API</span><span class="proj-tag">Playwright</span><span class="proj-tag">GitHub Actions</span><span class="proj-tag">CLI</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://github.com/OssOIB/ai-test-generator" target="_blank" rel="noopener">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a class="proj-link" href="https://github.com/OssOIB/ai-test-generator/actions" target="_blank" rel="noopener">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span data-en="Live CI" data-fr="CI Live">Live CI</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- playwright-ai-testing-showcase -->
+    <div class="proj-card" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15" data-aos="fade-up" data-aos-delay="120">
+      <div class="proj-head">
+        <div class="proj-icon">🎭</div>
+        <span class="badge badge-live">SHOWCASE</span>
+      </div>
+      <h3 class="proj-title">playwright-ai-testing-showcase</h3>
+      <p class="proj-desc" data-en="Production-grade E2E test suite built on Page Object Model with AI-generated seeded test data, custom fixtures, multi-browser GitHub Actions matrix, and HTML reporting." data-fr="Suite de tests E2E de niveau production basée sur le Pattern Page Object Model avec données de test générées par IA, fixtures personnalisées, matrice multi-navigateurs GitHub Actions et rapport HTML.">
+        Production-grade E2E test suite built on Page Object Model with AI-generated seeded test data, custom fixtures, multi-browser GitHub Actions matrix, and HTML reporting.
+      </p>
+      <div class="proj-tags">
+        <span class="proj-tag">Playwright</span><span class="proj-tag">TypeScript</span><span class="proj-tag">POM</span><span class="proj-tag">AI Test Data</span><span class="proj-tag">GitHub Actions</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://github.com/OssOIB/playwright-ai-testing-showcase" target="_blank" rel="noopener">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════════
+     EDUCATION & CERTS
+═════════════════════════════════════════════════════════ -->
+<section id="education">
+  <div class="s-tag" data-en="05 // Education &amp; Certifications" data-fr="05 // Formation &amp; Certifications">05 // Education &amp; Certifications</div>
+  <h2 class="s-title" data-en-html="Learning &amp; <span>Credentials</span>" data-fr-html="Formation &amp; <span>Accréditations</span>">Learning &amp; <span>Credentials</span></h2>
+
+  <div class="edu-cert-grid">
+    <!-- Education -->
+    <div data-aos="fade-right">
+      <h3 style="font-size:1.1rem;color:var(--muted);margin-bottom:2rem;font-weight:500;letter-spacing:.05em" data-en="EDUCATION" data-fr="FORMATION">EDUCATION</h3>
+      <div class="edu-item">
+        <div class="edu-year">2025</div>
+        <div>
+          <div class="edu-degree" data-en="Master — Cybersecurity" data-fr="Master — Cybersécurité">Master — Cybersecurity</div>
+          <div class="edu-school">Université Catholique de Lille</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2023</div>
+        <div>
+          <div class="edu-degree" data-en="Bachelor — Web Development" data-fr="Licence — Développement Web">Bachelor — Web Development</div>
+          <div class="edu-school">IRIS Paris</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2022</div>
+        <div>
+          <div class="edu-degree" data-en="BTS — IT &amp; Networks" data-fr="BTS — Informatique &amp; Réseaux">BTS — IT &amp; Networks</div>
+          <div class="edu-school">ISTA Morocco</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div data-aos="fade-left">
+      <h3 style="font-size:1.1rem;color:var(--muted);margin-bottom:2rem;font-weight:500;letter-spacing:.05em" data-en="CERTIFICATIONS" data-fr="CERTIFICATIONS">CERTIFICATIONS</h3>
+      <div class="cert-grid">
+        <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">Cisco CCNA 1–4</div></div>
+        <div class="cert-item"><div class="cert-dot"></div><div class="cert-name" data-en="Microsoft Graph (2024)" data-fr="Microsoft Graph (2024)">Microsoft Graph (2024)</div></div>
+        <div class="cert-item"><div class="cert-dot"></div><div class="cert-name" data-en="Playwright — Udemy (2024)" data-fr="Playwright — Udemy (2024)">Playwright — Udemy (2024)</div></div>
+        <div class="cert-item"><div class="cert-dot"></div><div class="cert-name" data-en="ISTQB Foundation — Udemy (2024)" data-fr="ISTQB Foundation — Udemy (2024)">ISTQB Foundation — Udemy (2024)</div></div>
+        <div class="cert-item"><div class="cert-dot"></div><div class="cert-name" data-en="Robot Framework — Udemy (2024)" data-fr="Robot Framework — Udemy (2024)">Robot Framework — Udemy (2024)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════════
+     CONTACT
+═════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="s-tag" data-en="06 // Contact" data-fr="06 // Contact">06 // Contact</div>
+  <h2 class="s-title" data-en-html="Let's <span>Connect</span>" data-fr-html="Entrons en <span>Contact</span>">Let's <span>Connect</span></h2>
+  <p class="contact-sub" data-en="Open to QA Automation Engineer roles, consulting missions, and exciting AI-testing collaborations. Let's build quality software together." data-fr="Ouvert aux postes d'Ingénieur QA Automatisation, aux missions de conseil et aux collaborations autour des tests pilotés par l'IA. Construisons ensemble des logiciels de qualité.">
+    Open to QA Automation Engineer roles, consulting missions, and exciting AI-testing collaborations. Let's build quality software together.
+  </p>
+  <div class="contact-links">
+    <a class="contact-a" href="https://github.com/OssOIB" target="_blank" rel="noopener">
+      <span class="contact-a-icon">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      </span>
+      GitHub
+    </a>
+    <a class="contact-a" href="https://linkedin.com/in/yahya-michbal" target="_blank" rel="noopener">
+      <span>
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+      </span>
+      LinkedIn
+    </a>
+    <a class="contact-a" href="mailto:yahyamichbal6@gmail.com">
+      <span>
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      </span>
+      yahyamichbal6@gmail.com
+    </a>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════════
+     FOOTER
+═════════════════════════════════════════════════════════ -->
+<footer>
+  <p data-en="Designed &amp; built by <span>Yahya Michbal</span> · QA Automation Engineer · Paris 🇫🇷" data-fr="Conçu &amp; développé par <span>Yahya Michbal</span> · Ingénieur QA Automatisation · Paris 🇫🇷">
+    Designed &amp; built by <span>Yahya Michbal</span> · QA Automation Engineer · Paris 🇫🇷
+  </p>
+</footer>
+
+<!-- ═════════════════════════════════════════════════════════
+     SCRIPTS
+═════════════════════════════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   LOADER
+═══════════════════════════════════════════════════════════ */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('gone');
+    initSite();
+  }, 2500);
+});
+
+function initSite() {
+  initThreeJS();
+  initCursor();
+  initNav();
+  initTyped('en');
+  initAOS();
+  initSkillRings();
+  initGSAP();
+  initTilt();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LANGUAGE SWITCHER
+═══════════════════════════════════════════════════════════ */
+let currentLang = 'en';
+let typedInstance = null;
+
+const typedStrings = {
+  en: [
+    'QA Automation Engineer',
+    'AI-Augmented Testing Specialist',
+    'Playwright Framework Architect',
+    'CI/CD Pipeline Craftsman',
+    'Quality-First Developer',
+  ],
+  fr: [
+    'Ingénieur QA Automatisation',
+    'Spécialiste Tests Augmentés par l\'IA',
+    'Architecte Frameworks Playwright',
+    'Artisan Pipelines CI/CD',
+    'Développeur Orienté Qualité',
+  ],
+};
+
+function setLang(lang) {
+  currentLang = lang;
+
+  // Toggle active button
+  document.querySelectorAll('.lbtn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  document.documentElement.lang = lang;
+
+  // Update text content
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.getAttribute(`data-${lang}`);
+    if (val !== null) el.textContent = val;
+  });
+
+  // Update innerHTML (for spans inside text)
+  document.querySelectorAll('[data-en-html]').forEach(el => {
+    const val = el.getAttribute(`data-${lang}-html`);
+    if (val !== null) el.innerHTML = val;
+  });
+
+  // Restart Typed.js
+  initTyped(lang);
+}
+
+document.querySelectorAll('.lbtn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
+function initTyped(lang) {
+  if (typedInstance) {
+    typedInstance.destroy();
+    const el = document.getElementById('typed-el');
+    if (el) el.textContent = '';
+  }
+  typedInstance = new Typed('#typed-el', {
+    strings: typedStrings[lang],
+    typeSpeed: 52,
+    backSpeed: 28,
+    backDelay: 2200,
+    loop: true,
+    startDelay: 200,
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THREE.JS BACKGROUND
+═══════════════════════════════════════════════════════════ */
+function initThreeJS() {
+  const canvas = document.getElementById('bg-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 65;
+
+  // Star field
+  const starCount = 1800;
+  const starGeo = new THREE.BufferGeometry();
+  const starPos = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 280;
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+  const starMat = new THREE.PointsMaterial({ size: 0.22, color: 0xffffff, transparent: true, opacity: 0.28 });
+  scene.add(new THREE.Points(starGeo, starMat));
+
+  // Cyan particles
+  const cCount = 350;
+  const cGeo = new THREE.BufferGeometry();
+  const cPos = new Float32Array(cCount * 3);
+  for (let i = 0; i < cCount * 3; i++) cPos[i] = (Math.random() - 0.5) * 140;
+  cGeo.setAttribute('position', new THREE.BufferAttribute(cPos, 3));
+  const cDots = new THREE.Points(cGeo, new THREE.PointsMaterial({ size: 0.45, color: 0x00f5ff, transparent: true, opacity: 0.55 }));
+  scene.add(cDots);
+
+  // Purple particles
+  const pCount = 200;
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount * 3; i++) pPos[i] = (Math.random() - 0.5) * 140;
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const pDots = new THREE.Points(pGeo, new THREE.PointsMaterial({ size: 0.45, color: 0x8b00ff, transparent: true, opacity: 0.45 }));
+  scene.add(pDots);
+
+  // Wireframe geometric shapes
+  const shapes = [];
+  const templates = [
+    { geo: new THREE.IcosahedronGeometry(1.8, 0), col: 0x00f5ff },
+    { geo: new THREE.OctahedronGeometry(1.4, 0), col: 0x8b00ff },
+    { geo: new THREE.TetrahedronGeometry(1.4, 0), col: 0x00f5ff },
+    { geo: new THREE.IcosahedronGeometry(1, 0),   col: 0x8b00ff },
+    { geo: new THREE.OctahedronGeometry(1.8, 0),  col: 0x00f5ff },
+  ];
+  for (let i = 0; i < 18; i++) {
+    const t = templates[i % templates.length];
+    const m = new THREE.Mesh(t.geo, new THREE.MeshBasicMaterial({
+      color: t.col, wireframe: true, transparent: true, opacity: Math.random() * 0.14 + 0.04,
+    }));
+    m.position.set((Math.random()-.5)*90, (Math.random()-.5)*55, (Math.random()-.5)*50-5);
+    const s = Math.random() * 1.6 + 0.5;
+    m.scale.setScalar(s);
+    m.userData.rx = (Math.random()-.5) * .0028;
+    m.userData.ry = (Math.random()-.5) * .0028;
+    scene.add(m);
+    shapes.push(m);
+  }
+
+  let tx = 0, ty = 0;
+  window.addEventListener('mousemove', e => {
+    tx = (e.clientX / window.innerWidth - 0.5) * 2;
+    ty = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  let frame = 0;
+  (function animate() {
+    requestAnimationFrame(animate);
+    frame++;
+    cDots.rotation.y = frame * -.00018;
+    cDots.rotation.x = frame *  .00009;
+    pDots.rotation.y = frame *  .00018;
+    pDots.rotation.x = frame * -.00009;
+    shapes.forEach(s => { s.rotation.x += s.userData.rx; s.rotation.y += s.userData.ry; });
+    camera.position.x += (tx * 6 - camera.position.x) * .03;
+    camera.position.y += (-ty * 4 - camera.position.y) * .03;
+    camera.lookAt(0, 0, 0);
+    renderer.render(scene, camera);
+  })();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════════════════════ */
+function initCursor() {
+  const cur = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let cx = 0, cy = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; });
+
+  (function loop() {
+    requestAnimationFrame(loop);
+    rx += (cx - rx) * .14;
+    ry += (cy - ry) * .14;
+    cur.style.left  = cx + 'px';
+    cur.style.top   = cy + 'px';
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+  })();
+
+  document.querySelectorAll('a,button,.proj-card,.sk-card,.tl-card').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════════ */
+function initNav() {
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  const burger = document.getElementById('burger');
+  const menu   = document.getElementById('mobile-menu');
+  burger.addEventListener('click', () => menu.classList.toggle('open'));
+}
+function closeMobile() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AOS
+═══════════════════════════════════════════════════════════ */
+function initAOS() {
+  AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 80 });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SKILL RINGS (IntersectionObserver)
+═══════════════════════════════════════════════════════════ */
+function initSkillRings() {
+  const R = 40, CIRC = 2 * Math.PI * R; // 251.3
+
+  document.querySelectorAll('.ring-fill').forEach(circle => {
+    const pct = parseInt(circle.getAttribute('data-pct'), 10);
+    const offset = CIRC - (pct / 100) * CIRC;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          circle.style.strokeDashoffset = offset;
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    io.observe(circle.closest('.sk-card'));
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GSAP ScrollTrigger
+═══════════════════════════════════════════════════════════ */
+function initGSAP() {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Section titles
+  gsap.utils.toArray('.s-title').forEach(el => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      y: 40, opacity: 0, duration: .9, ease: 'power3.out',
+    });
+  });
+
+  // Timeline items progressive color
+  gsap.utils.toArray('.tl-item').forEach((el, i) => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      x: -30, opacity: 0, duration: .7, delay: i * .05, ease: 'power2.out',
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VANILLA TILT
+═══════════════════════════════════════════════════════════ */
+function initTilt() {
+  if (!window.VanillaTilt) return;
+  VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
+    max: 12, speed: 400, glare: true, 'max-glare': 0.12, perspective: 900,
+  });
+}
+</script>
+</body>
+</html>
