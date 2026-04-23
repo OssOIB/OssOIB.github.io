@@ -597,7 +597,7 @@
   <div class="timeline">
 
     <!-- Sogeti -->
-    <div class="tl-item" data-aos="fade-right">
+    <div class="tl-item">
       <div class="tl-date" data-en="Sept 2024 — Present" data-fr="Sept 2024 — Aujourd'hui">Sept 2024 — Present</div>
       <div class="tl-card">
         <div class="tl-company">Sogeti (Capgemini Group)</div>
@@ -612,7 +612,7 @@
     </div>
 
     <!-- Adeo Pick&Go -->
-    <div class="tl-item" data-aos="fade-right" data-aos-delay="80">
+    <div class="tl-item">
       <div class="tl-date">Nov 2025 — Dec 2025</div>
       <div class="tl-card">
         <div class="tl-company">Adeo / Leroy Merlin</div>
@@ -628,7 +628,7 @@
     </div>
 
     <!-- FDJ -->
-    <div class="tl-item" data-aos="fade-right" data-aos-delay="120">
+    <div class="tl-item">
       <div class="tl-date" data-en="Mar 2025 — Sept 2025" data-fr="Mars 2025 — Sept 2025">Mar 2025 — Sept 2025</div>
       <div class="tl-card">
         <div class="tl-company">FDJ (Française des Jeux)</div>
@@ -644,7 +644,7 @@
     </div>
 
     <!-- Adeo PDP -->
-    <div class="tl-item" data-aos="fade-right" data-aos-delay="160">
+    <div class="tl-item">
       <div class="tl-date" data-en="Jan 2025 — Mar 2025" data-fr="Jan 2025 — Mars 2025">Jan 2025 — Mar 2025</div>
       <div class="tl-card">
         <div class="tl-company">Adeo / Leroy Merlin</div>
@@ -660,7 +660,7 @@
     </div>
 
     <!-- Worldline -->
-    <div class="tl-item" data-aos="fade-right" data-aos-delay="200">
+    <div class="tl-item">
       <div class="tl-date" data-en="Sept 2023 — Aug 2024" data-fr="Sept 2023 — Août 2024">Sept 2023 — Aug 2024</div>
       <div class="tl-card">
         <div class="tl-company">Worldline</div>
@@ -675,7 +675,7 @@
     </div>
 
     <!-- Ematrape -->
-    <div class="tl-item" data-aos="fade-right" data-aos-delay="240">
+    <div class="tl-item">
       <div class="tl-date" data-en="Jul 2023 — Sept 2023" data-fr="Juil 2023 — Sept 2023">Jul 2023 — Sept 2023</div>
       <div class="tl-card">
         <div class="tl-company">Ematrape</div>
@@ -690,7 +690,7 @@
     </div>
 
     <!-- Orange Morocco -->
-    <div class="tl-item" data-aos="fade-right" data-aos-delay="280">
+    <div class="tl-item">
       <div class="tl-date" data-en="May 2022 — Aug 2022" data-fr="Mai 2022 — Août 2022">May 2022 — Aug 2022</div>
       <div class="tl-card">
         <div class="tl-company">Orange Morocco</div>
@@ -1118,19 +1118,11 @@ function initGSAP() {
   if (!window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
 
-  // Section titles
-  gsap.utils.toArray('.s-title').forEach(el => {
-    gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-      y: 40, opacity: 0, duration: .9, ease: 'power3.out',
-    });
-  });
-
-  // Timeline items progressive color
+  // Timeline items — staggered slide-in from left (no AOS on these, GSAP owns them)
   gsap.utils.toArray('.tl-item').forEach((el, i) => {
     gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-      x: -30, opacity: 0, duration: .7, delay: i * .05, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' },
+      x: -35, opacity: 0, duration: .75, delay: i * .04, ease: 'power2.out',
     });
   });
 }
