@@ -289,6 +289,7 @@
       background: var(--glass); border: 1px solid var(--gb); border-radius: 1.5rem;
       padding: 2rem; backdrop-filter: blur(15px); transition: border-color .4s ease;
       transform-style: preserve-3d; position: relative; overflow: hidden;
+      cursor: pointer;
     }
     .proj-card::after {
       content:''; position: absolute; inset: 0; border-radius: 1.5rem;
@@ -717,7 +718,7 @@
   <div class="projects-grid">
 
     <!-- ai-test-generator -->
-    <div class="proj-card" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15" data-aos="fade-up">
+    <div class="proj-card" data-href="https://github.com/OssOIB/ai-test-generator" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15" data-aos="fade-up">
       <div class="proj-head">
         <div class="proj-icon">🤖</div>
         <span class="badge badge-ai">AI-POWERED</span>
@@ -742,7 +743,7 @@
     </div>
 
     <!-- playwright-ai-testing-showcase -->
-    <div class="proj-card" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15" data-aos="fade-up" data-aos-delay="120">
+    <div class="proj-card" data-href="https://github.com/OssOIB/playwright-ai-testing-showcase" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15" data-aos="fade-up" data-aos-delay="120">
       <div class="proj-head">
         <div class="proj-icon">🎭</div>
         <span class="badge badge-live">SHOWCASE</span>
@@ -882,6 +883,7 @@ function initSite() {
   initSkillRings();
   initGSAP();
   initTilt();
+  initProjCards();
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1082,6 +1084,18 @@ function initNav() {
 }
 function closeMobile() {
   document.getElementById('mobile-menu').classList.remove('open');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PROJECT CARD CLICK → OPEN REPO
+═══════════════════════════════════════════════════════════ */
+function initProjCards() {
+  document.querySelectorAll('.proj-card[data-href]').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return; // let inner links handle themselves
+      window.open(card.dataset.href, '_blank', 'noopener');
+    });
+  });
 }
 
 /* ═══════════════════════════════════════════════════════════
