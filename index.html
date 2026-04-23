@@ -365,20 +365,68 @@
     .mobile-menu a:hover { color: var(--cyan); }
 
     /* ═══════════════ RESPONSIVE ═══════════════ */
+
+    /* ── Tablet / large phone ─────────────────── */
     @media (max-width: 920px) {
       .about-grid, .edu-cert-grid { grid-template-columns: 1fr; }
+      .edu-cert-grid { gap: 3rem; }
       #cursor, #cursor-ring { display: none; }
       body { cursor: auto; }
       .nav-links { display: none; }
       .nav-burger { display: flex; }
+      .about-meta { grid-template-columns: 1fr 1fr; }
+      .avatar-box { width: 180px; height: 180px; font-size: 3rem; }
     }
+
+    /* ── Small phone ──────────────────────────── */
     @media (max-width: 620px) {
       section { padding-left: 1.2rem; padding-right: 1.2rem; }
-      .skills-grid { grid-template-columns: repeat(2,1fr); }
+
+      /* Hero */
+      .hero-badge { font-size: .65rem; letter-spacing: .18em; }
+      .hero-typed { font-size: .9rem; }
+      .hero-cta { flex-direction: column; align-items: flex-start; }
+      .hero-cta .btn-p, .hero-cta .btn-o { width: 100%; justify-content: center; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+
+      /* About */
+      .about-meta { grid-template-columns: 1fr; gap: .8rem; }
+      .glass-card { padding: 1.5rem; }
+      .avatar-box { width: 140px; height: 140px; font-size: 2.2rem; margin-bottom: 1.4rem; }
+
+      /* Skills */
+      .skills-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
+      .sk-card { padding: 1.4rem .8rem 1.1rem; }
+      .ring-wrap { width: 72px; height: 72px; }
+
+      /* Experience */
+      .timeline { padding-left: 1.2rem; }
+      .tl-item { padding-left: 1.6rem; margin-bottom: 2rem; }
+      .tl-card { padding: 1.1rem 1.2rem; }
+      .tl-card:hover { transform: none; }
+
+      /* Projects */
       .projects-grid { grid-template-columns: 1fr; }
+      .proj-card { padding: 1.4rem; }
+
+      /* Education */
       .cert-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 2rem; }
-      .hero-cta { flex-direction: column; }
+
+      /* Contact */
+      .contact-links { flex-direction: column; align-items: stretch; }
+      .contact-a { justify-content: center; }
+      .contact-sub { font-size: .9rem; }
+    }
+
+    /* ── Very small phones (≤ 400px) ─────────── */
+    @media (max-width: 400px) {
+      section { padding-left: .9rem; padding-right: .9rem; }
+      .hero-stats { flex-direction: column; gap: 1rem; }
+      .stat-num { font-size: 2rem; }
+      .skills-grid { gap: .75rem; }
+      .proj-card { padding: 1.1rem; }
+      #lang-sw { bottom: 16px; right: 12px; }
+      .tl-company { font-size: .95rem; }
     }
   </style>
 </head>
