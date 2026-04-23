@@ -98,9 +98,10 @@
 
     /* ═══════════════ LANG SWITCHER ═══════════════ */
     #lang-sw {
+      position: fixed; bottom: 30px; right: 30px; z-index: 9999;
       display: flex; background: var(--glass); border: 1px solid var(--gb);
       border-radius: 2rem; overflow: hidden; backdrop-filter: blur(14px);
-      flex-shrink: 0; margin-left: 2rem;
+      box-shadow: var(--glow-c);
     }
     .lbtn {
       padding: .38rem .9rem; font-family: var(--mono); font-size: .72rem; font-weight: 700;
@@ -407,14 +408,16 @@
     <li><a href="#education"  data-en="Education"  data-fr="Formation">Education</a></li>
     <li><a href="#contact"    data-en="Contact"    data-fr="Contact">Contact</a></li>
   </ul>
-  <div id="lang-sw">
-    <button class="lbtn active" data-lang="en">EN</button>
-    <button class="lbtn" data-lang="fr">FR</button>
-  </div>
   <button class="nav-burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<!-- Lang switcher — fixed bottom-right -->
+<div id="lang-sw">
+  <button class="lbtn active" data-lang="en">EN</button>
+  <button class="lbtn" data-lang="fr">FR</button>
+</div>
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu">
